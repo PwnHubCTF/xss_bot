@@ -31,13 +31,13 @@ async function start(){
       ], });
 
     app.get("/", async (req, res) => {
-        const key = req.headers["X-BOT-KEY"]
+        const key = req.headers["x-bot-key"]
         if(key != TOKEN) return res.status(401).json({status: 'error', message: 'Invalid key'})
         return res.status(401).json({status: 'success', message: 'Bot is ready'})
     })
 
     app.post("/", async (req, res) => {
-        const key = req.headers["X-BOT-KEY"]
+        const key = req.headers["x-bot-key"]
         if(key != TOKEN) return res.json({status: 'error', message: 'Invalid key'})
 
         const url = req.body.url;
