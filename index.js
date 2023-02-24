@@ -46,7 +46,7 @@ async function start(){
       ], });
 
     app.post("/", async (req, res) => {
-        const key = req.headers["bot-key"]
+        const key = req.headers["X-BOT-KEY"]
         if(key != TOKEN) return res.json({status: 'error', message: 'Invalid key'}
 )
         const url = req.body.url;
