@@ -23,21 +23,6 @@ async function handler(browser, url, cookie){
     await page.close();
 }
 
-/*
-Payload
-{
-    url: "https://eoici9tlus34ski.m.pipedream.net",
-    cookie: {
-        name: "flag",
-        value: "le flag là",
-        domain: "localhost"
-    }
-}
-
-
-*/
-
-
 async function start(){
     const browser = await puppeteer.launch({ pipe: true,  args: [
         "--no-sandbox",
@@ -45,10 +30,16 @@ async function start(){
         "--disable-dev-shm-usage",
       ], });
 
+    app.get("/", async (req, res) => {
+        const key = req.headers["X-BOT-KEY"]
+        if(key != TOKEN) return res.status(401).json({status: 'error', message: 'Invalid key'})
+        return res.status(401).json({status: 'success', message: 'Bot is ready'})
+    })
+
     app.post("/", async (req, res) => {
         const key = req.headers["X-BOT-KEY"]
-        if(key != TOKEN) return res.json({status: 'error', message: 'Invalid key'}
-)
+        if(key != TOKEN) return res.json({status: 'error', message: 'Invalid key'})
+
         const url = req.body.url;
         const cookie = req.body.cookie;
         if (!(/^https?:\/\//).test(url)) {
