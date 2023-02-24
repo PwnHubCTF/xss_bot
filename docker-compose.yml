@@ -1,5 +1,3 @@
-
-
 version: "3.3"
 services:
   bot:
@@ -9,3 +7,6 @@ services:
     restart: always
     ports:
       - "8090:8090"
+    environment:
+      - PORT
+      - BOT_TOKEN
