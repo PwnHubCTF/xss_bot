@@ -33,7 +33,7 @@ async function start(){
     app.get("/", async (req, res) => {
         const key = req.headers["x-bot-key"]
         if(key != TOKEN) return res.status(401).json({status: 'error', message: 'Invalid key'})
-        return res.status(401).json({status: 'success', message: 'Bot is ready'})
+        return res.json({status: 'success', message: 'Bot is ready'})
     })
 
     app.post("/", async (req, res) => {
@@ -42,7 +42,7 @@ async function start(){
 
         const url = req.body.url;
         const cookie = req.body.cookie;
-        if (!(/^https?:\/\//).test(url)) {
+        if (!(/^http?:\/\//).test(url)) {
             return res.json({status: 'error', message: 'Invalid URL'})
         }
         if(!url || !cookie) return res.json({status: 'error', message: 'Missing "url" or "cookie" value'})
