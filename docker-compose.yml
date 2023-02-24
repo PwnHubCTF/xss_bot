@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      -"${PORT}:${PORT}"
+      - "${PORT}:${PORT}"
     environment:
       - PORT
       - BOT_TOKEN
